@@ -1,0 +1,9 @@
+/pgadmin
+/pgadmin/*
+/pgadmin/sessions/*
+/pgdata
+/pgdata/*
+/pgdata/**/*
+/uploads
+/uploads/*
+/uploads/**/*

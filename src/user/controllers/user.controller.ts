@@ -34,22 +34,18 @@ import { RolesGuard } from '../guards/roles.guard';
 import { UserService } from '../services/user.service';
 
 /**
- * Контроллер для работы с пользователями
+ * User controller
  */
 @Controller('user')
 @ApiTags('Working with users')
 @ApiBearerAuth()
 export class UserController {
 	/**
-	 * Контроллер для работы с пользователями
-	 * @param userService Сервис для работы с пользователями
+	 * User controller
+	 * @param userService User service
 	 */
 	constructor(private readonly userService: UserService) {}
 
-	/**
-	 * Получение всех пользователей
-	 * @returns Список пользователей
-	 */
 	@Get()
 	@UseGuards(RolesGuard)
 	@Roles(UserRoles.USER, UserRoles.ROOT)
@@ -69,10 +65,6 @@ export class UserController {
 		return await this.userService.findAll();
 	}
 
-	/**
-	 * Получение списка всех доступных ролей в системе
-	 * @returns Возможные роли пользователя
-	 */
 	@Get('roles')
 	@UseGuards(RolesGuard)
 	@Roles(UserRoles.USER, UserRoles.ROOT)
@@ -92,11 +84,6 @@ export class UserController {
 		return this.userService.getRoles();
 	}
 
-	/**
-	 * Получение карточки пользователя
-	 * @param id ID пользователя
-	 * @returns Карточка пользователя
-	 */
 	@Get(':id')
 	@UseGuards(RolesGuard)
 	@Roles(UserRoles.USER, UserRoles.ROOT)
@@ -127,12 +114,6 @@ export class UserController {
 		throw new BadRequestException();
 	}
 
-	/**
-	 * Получение информации для обновления пользователя
-	 * @param id ID пользователя
-	 * @param req HTTP Request
-	 * @returns DTO обновления
-	 */
 	@Get(':id/edit')
 	@UseGuards(RolesGuard, OnlyOwnerGetForUpdateGuard)
 	@Roles(UserRoles.USER, UserRoles.ROOT)
@@ -165,11 +146,6 @@ export class UserController {
 		throw new BadRequestException();
 	}
 
-	/**
-	 * Создание суперпользователя (только для других суперпользователей)
-	 * @param dto DTO создания пользователя
-	 * @returns ID созданной сущности
-	 */
 	@Post()
 	@UseGuards(RolesGuard)
 	@Roles(UserRoles.ROOT)
@@ -198,13 +174,6 @@ export class UserController {
 		);
 	}
 
-	/**
-	 * Обвновление пользователя
-	 * @param id ID пользователя
-	 * @param req HTTP Request
-	 * @param dto DTO обновления
-	 * @returns ID обновленной сущности
-	 */
 	@Put(':id')
 	@UsePipes(new ValidationPipe())
 	@UseGuards(RolesGuard, OnlyOwnerGuard)
@@ -236,11 +205,6 @@ export class UserController {
 		return await this.userService.update(id, dto);
 	}
 
-	/**
-	 * Удаление пользователей
-	 * @param req HTTP Request
-	 * @param dto DTO удаления
-	 */
 	@Delete()
 	@HttpCode(204)
 	@UsePipes(new ValidationPipe())

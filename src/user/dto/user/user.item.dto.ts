@@ -1,14 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * Данные пользоателя, полученные для вывода в списке
+ * User Item DTO
  */
 export class UserItemDto {
 	/**
-	 * Данные пользоателя, полученные для вывода в списке
-	 * @param id ID пользователя
+	 * User Item DTO
+	 * @param id User ID
 	 * @param email Email
-	 * @param name Имя пользователя
+	 * @param name Username
 	 */
 	constructor(id: number, email: string, name: string) {
 		this.id = id;
@@ -17,7 +17,7 @@ export class UserItemDto {
 	}
 
 	/**
-	 * ID пользователя
+	 * User ID
 	 */
 	@ApiProperty({ description: 'User ID', example: 123 })
 	id: number;
@@ -29,7 +29,7 @@ export class UserItemDto {
 	email: string;
 
 	/**
-	 * Имя пользователя
+	 * Username
 	 */
 	@ApiProperty({ description: 'Username', example: 'John Doe' })
 	name: string;

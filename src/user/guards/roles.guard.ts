@@ -10,25 +10,12 @@ import { Reflector } from '@nestjs/core';
 import { ROLES_KEY } from '../decorators/roles-auth.decorator';
 
 /**
- * Guard для проверки роли пользователя перед выполнением запроса
+ * Guard to check the user's role before executing the request
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-	/**
-	 * Guard для проверки роли пользователя перед выполнением запроса
-	 * @param jwtService Сервис для работы с JWT
-	 * @param reflector Рефлектор
-	 */
 	constructor(private jwtService: JwtService, private reflector: Reflector) {}
 
-	/**
-	 * Возвращаемое значение указывает,
-	 * разрешено ли выполнение текущего запроса.
-	 * Возврат может быть либо синхронным (`boolean`),
-	 * или асинхронный ("Promise" или "Observable")
-	 * @param context Текущий контекст выполнения
-	 * @returns Разрешить или отказать в выполнении запроса
-	 */
 	canActivate(
 		context: ExecutionContext
 	): boolean | Promise<boolean> | Observable<boolean> {

@@ -2,22 +2,22 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserRoles } from '../../entities/user.entity';
 
 /**
- * DTO для списка доступных ролей
+ * DTO for list of available roles
  */
 export class UserRolesDto {
 	/**
-	 * DTO для списка доступных ролей
-	 * @param roles Список полученных ролей
+	 * DTO for list of available roles
+	 * @param roles List of received roles
 	 */
 	constructor(roles: string[]) {
 		this.roles = roles;
 	}
 
 	/**
-	 * Список полученных ролей
+	 * List of received roles
 	 */
 	@ApiProperty({
-		description: 'User roles list',
+		description: 'List of received roles',
 		example: [UserRoles.ROOT, UserRoles.USER],
 		isArray: true,
 		type: [String]

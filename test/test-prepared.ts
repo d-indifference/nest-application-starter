@@ -6,8 +6,8 @@ import { UserModule } from '../src/user/user.module';
 import { dataSourceTestFactory } from '../src/data-source-factory';
 
 /**
- * Сборка тестового экземпляра приложения
- * @returns Тестовый экземпляр приложения
+ * Build testing app module
+ * @returns Testing app module
  */
 export const testNestApplication = async (): Promise<INestApplication> => {
 	const moduleFixture: TestingModule = await Test.createTestingModule({

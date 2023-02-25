@@ -2,14 +2,14 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 /**
- * Информация для изменения пользователя
+ * User Update DTO
  */
 export class UserUpdateDto {
 	/**
-	 * Информация для изменения пользователя
+	 * User Update DTO
 	 * @param email Email
-	 * @param password Пароль
-	 * @param name Имя пользователя
+	 * @param password Password
+	 * @param name Username
 	 */
 	constructor(email: string, password: string, name: string) {
 		this.email = email;
@@ -28,7 +28,7 @@ export class UserUpdateDto {
 	email: string;
 
 	/**
-	 * Пароль
+	 * Password
 	 */
 	@ApiProperty({
 		description: 'User password',
@@ -41,7 +41,7 @@ export class UserUpdateDto {
 	password: string;
 
 	/**
-	 * Имя пользователя
+	 * Username
 	 */
 	@ApiProperty({
 		description: 'Username',

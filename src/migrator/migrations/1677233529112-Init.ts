@@ -4,9 +4,17 @@ import * as CryptoJS from 'crypto-js';
 
 config();
 
+/**
+ * Init database migration
+ */
 export class Init1677233529112 implements MigrationInterface {
 	name = 'Init1677233529112';
 
+	/**
+	 * Encrypt a password
+	 * @param password Password without encryption
+	 * @returns Encrypted password
+	 */
 	private encryptPassword(password: string): string {
 		return CryptoJS.AES.encrypt(
 			password,

@@ -2,14 +2,17 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { testNestApplication } from './test-prepared';
 
+/**
+ * Testing of /api/user endpoints with common user
+ */
 describe('UserController & AuthController (e2e)', () => {
 	/**
-	 * Nest-приложение
+	 * Test version of Nest app
 	 */
 	let app: INestApplication;
 
 	/**
-	 * Корректные входные данные для root-пользователя
+	 * Correct credentials for root user
 	 */
 	const testDataRight = {
 		email: 'root@gmail.com',
@@ -17,12 +20,12 @@ describe('UserController & AuthController (e2e)', () => {
 	};
 
 	/**
-	 * Некорректные входные данные для root-пользователя
+	 * Incorrect credentials for root user
 	 */
 	const testDataBadPassword = { email: 'root@gmail.com', password: 'tor' };
 
 	/**
-	 * Данные для создания нового root-пользователя
+	 * Data for new root user creating
 	 */
 	const testDataRoot = {
 		email: 'root2@gmail.com',
@@ -31,7 +34,7 @@ describe('UserController & AuthController (e2e)', () => {
 	};
 
 	/**
-	 * Данные для создания нового обычного пользователя
+	 * Data for new common user creating
 	 */
 	const testDataUser = {
 		email: 'user2@gmail.com',
@@ -40,7 +43,7 @@ describe('UserController & AuthController (e2e)', () => {
 	};
 
 	/**
-	 * Данные для обновления нового обычного пользователя
+	 * Data for new common user updating
 	 */
 	const testDataUserUpdated = {
 		email: 'user@yandex.ru',
@@ -49,40 +52,37 @@ describe('UserController & AuthController (e2e)', () => {
 	};
 
 	/**
-	 * DTO для удаления существующих пользователей
+	 * Deletition DTO for existing users
 	 */
 	const deleteDataRight = { ids: [] };
 
 	/**
-	 * DTO для проверки удаления несуществующих пользователей
+	 * Incorrect deletition DTO
 	 */
 	const deleteDataFailed = { ids: [1, 2] };
 
 	/**
-	 * Токен root-пользователя
+	 * Root user's bearer token
 	 */
 	let token;
 
 	/**
-	 * ID созданного пользователя
+	 * Created user's ID
 	 */
 	let newUserId;
 
 	/**
-	 * Токен созданного пользователя
+	 * Created user's bearer token
 	 */
 	let newUserToken;
 
-	/**
-	 * Создание экземпляра приложения
-	 */
 	beforeEach(async () => {
 		app = await testNestApplication();
 		await app.init();
 	});
 
 	/**
-	 * Тест авторизации root-пользователя
+	 * Root user's sign in test
 	 */
 	it('/api/user/auth/login (POST) - success', () => {
 		return request(app.getHttpServer())
@@ -96,7 +96,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест авторизации root-пользователя с некорректными входными данными
+	 * Root user's sign in with test with incorrect data
 	 */
 	it('/api/user/auth/login (POST) - failed', () => {
 		return request(app.getHttpServer())
@@ -106,7 +106,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест получения данных о пользователе по его токену
+	 * Getting user's data by its bearer token test
 	 */
 	it('/api/user/auth/whois (POST)', () => {
 		return request(app.getHttpServer())
@@ -120,7 +120,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест создания пользователя
+	 * Creating new user test
 	 */
 	it('/api/user (POST)', () => {
 		return request(app.getHttpServer())
@@ -134,7 +134,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест регистрации нового пользователя
+	 * New user's sign up test
 	 */
 	it('/api/user/auth/registration (POST)', () => {
 		return request(app.getHttpServer())
@@ -148,7 +148,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест получения данных о новом пользователе по его токену
+	 * Getting user's data by its bearer token test
 	 */
 	it('/api/user/auth/whois (POST) - for user', () => {
 		return request(app.getHttpServer())
@@ -163,7 +163,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест получения страницы списка пользователей
+	 * Getting users list test
 	 */
 	it('/api/user (GET) - success', () => {
 		return request(app.getHttpServer())
@@ -178,7 +178,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест получения всех возможных ролей, которые могут быть заданы пользователю
+	 * Getting all roles in system test
 	 */
 	it('/api/user/roles (GET)', () => {
 		return request(app.getHttpServer())
@@ -192,7 +192,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест получения пользователя по ID
+	 * User's getting by its ID test
 	 */
 	it('/api/user/{id} (GET) - success', () => {
 		return request(app.getHttpServer())
@@ -206,7 +206,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на проверку нахождения не существующего в БД пользователя
+	 * Checking for getting non-existent user test
 	 */
 	it('/api/user/{id} (GET) - failed', () => {
 		return request(app.getHttpServer())
@@ -216,7 +216,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на получение пользователя по ID для редактирования
+	 * User's getting by its ID for update test
 	 */
 	it('/api/user/{id}/edit (GET) - success', () => {
 		return request(app.getHttpServer())
@@ -230,7 +230,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на проверку возможности получения не root-пользователем данных о другом пользователе
+	 * Test to check if a non-root user can get data about another user
 	 */
 	it('/api/user/{id}/edit (GET) - failed', () => {
 		return request(app.getHttpServer())
@@ -240,7 +240,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на обновление пользователя
+	 * User updating test
 	 */
 	it('/api/user/{id} (PUT) - success', () => {
 		return request(app.getHttpServer())
@@ -255,7 +255,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на проверку возможности обновления не root-пользователем данных другого пользователя
+	 * Test to check if a non-root user can update another user's data
 	 */
 	it('/api/user/{id} (PUT) - failed', () => {
 		return request(app.getHttpServer())
@@ -266,7 +266,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на удаление пользователя
+	 * User deletition test
 	 */
 	it('/api/user (DELETE) - success', () => {
 		deleteDataRight.ids.push(newUserId);
@@ -279,7 +279,7 @@ describe('UserController & AuthController (e2e)', () => {
 	});
 
 	/**
-	 * Тест на возможность удаления не root-пользователем данных другого пользователя
+	 * Test for the ability of a non-root user to delete another user's data
 	 */
 	it('/api/user (DELETE) - failes', () => {
 		deleteDataFailed.ids.push(newUserId);

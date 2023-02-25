@@ -25,24 +25,18 @@ import { RolesGuard } from '../guards/roles.guard';
 import { AuthService } from '../services/auth.service';
 
 /**
- * Контроллер авторизации пользователя
+ * User authentication controller
  */
 @Controller('user/auth')
 @ApiTags('User authentification')
 @ApiBearerAuth()
 export class AuthController {
 	/**
-	 * Контроллер авторизации пользователя
-	 * @param authService Сервис авторизации пользователя
-	 * @param userVerifyService Сервис верификации пользователя
+	 * User authentication controller
+	 * @param authService User authentication service
 	 */
 	constructor(private readonly authService: AuthService) {}
 
-	/**
-	 * Авторизация пользователя
-	 * @param dto DTO авторизации
-	 * @returns Токен авторизации
-	 */
 	@Post('/login')
 	@HttpCode(200)
 	@UsePipes(new ValidationPipe())
@@ -66,11 +60,6 @@ export class AuthController {
 		return await this.authService.login(dto);
 	}
 
-	/**
-	 * Регистрация пользователя
-	 * @param dto DTO создания пользователя
-	 * @returns Регистрация пользователя и его Токен авторизации
-	 */
 	@Post('/registration')
 	@UsePipes(new ValidationPipe())
 	@ApiOperation({
@@ -89,11 +78,6 @@ export class AuthController {
 		return await this.authService.register(dto);
 	}
 
-	/**
-	 * Возврат информации о зарегистрированном пользователе
-	 * @param dto DTO токена
-	 * @returns Информации о зарегистрированном пользователе
-	 */
 	@Post('/whois')
 	@HttpCode(200)
 	@UseGuards(RolesGuard)

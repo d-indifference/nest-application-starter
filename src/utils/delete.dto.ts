@@ -2,11 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber } from 'class-validator';
 
 /**
- * DTO для операции удаления сущнностей
+ * DTO for delete entity operation
  */
 export class DeleteDto {
 	/**
-	 * ID сущностей для их удаления
+	 * Entity IDs to delete
 	 */
 	@ApiProperty({
 		description: 'Entities IDs for delete',

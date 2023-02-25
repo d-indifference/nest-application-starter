@@ -8,15 +8,15 @@ import { PasswordService } from './password.service';
 import { UserService } from './user.service';
 
 /**
- * Сервис аутентификации пользователя
+ * User authentication service
  */
 @Injectable()
 export class AuthService {
 	/**
-	 * Сервис аутентификации пользователя
-	 * @param userService Сервис работы с пользователями
-	 * @param jwtService JWT-сервис
-	 * @param passwordService Сервис для работы с паролем
+	 * User authentication service
+	 * @param userService User service
+	 * @param jwtService JWT Service
+	 * @param passwordService Password Service
 	 */
 	constructor(
 		private readonly userService: UserService,
@@ -25,9 +25,9 @@ export class AuthService {
 	) {}
 
 	/**
-	 * Авторизация пользователя
-	 * @param dto DTO авторизации
-	 * @returns Bearer-токен
+	 * User authorization
+	 * @param dto Sign in DTO
+	 * @returns Bearer Token
 	 */
 	public async login(dto: UserSignInDto): Promise<TokenDto> {
 		Logger.log(
@@ -38,9 +38,9 @@ export class AuthService {
 	}
 
 	/**
-	 * Регистрация пользователя
-	 * @param dto DTO создания
-	 * @returns Bearer-токен
+	 * User registration
+	 * @param dto Creation DTO
+	 * @returns Bearer Token
 	 */
 	public async register(dto: UserCreateDto): Promise<TokenDto> {
 		const user = await this.userService.create(dto, UserRoles.USER);
@@ -54,9 +54,9 @@ export class AuthService {
 	}
 
 	/**
-	 * Генерация токена авторизации на основе сущности Пользователя
-	 * @param user Пользователь
-	 * @returns DTO Bearer-токена
+	 * Authorization token generation based on the User entity
+	 * @param user User
+	 * @returns Bearer token DTO
 	 */
 	private generateToken(user: User): TokenDto {
 		Logger.log(
@@ -74,9 +74,9 @@ export class AuthService {
 	}
 
 	/**
-	 * Проверка правильности введенных данных авторизации
-	 * @param dto DTO авторизации
-	 * @returns Найденная сущность на основе введенных email и пароля
+	 * Checking the correctness of the entered authorization data
+	 * @param dto Sign in DTO
+	 * @returns Found User entity
 	 */
 	private async validateUser(dto: UserSignInDto): Promise<User> {
 		const user = await this.userService.findByEmail(dto.email);

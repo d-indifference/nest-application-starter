@@ -1,0 +1,63 @@
+# Fix for pgadmin container:
+# 1. docker-compose up
+# 2. docker exec -it -u root nest_application_starter_pgadmin sh
+# 3. chown -R pgadmin:pgadmin /var/lib/pgadmin
+
+version: "3.9"
+services:
+  postgres:
+    container_name: nest_application_starter_db
+    image: postgres:13.3
+    env_file:
+      - .env
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - postgres
+
+  postgres_test:
+    container_name: nest_application_starter_db_test
+    image: postgres:13.3
+    env_file:
+      - .env.test
+    volumes:
+      - ./pgdata-test:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - postgres
+
+  pgadmin:
+    container_name: nest_application_starter_pgadmin
+    image: dpage/pgadmin4:5.7
+    env_file:
+      - .pgadmin.env
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    networks:
+      - postgres
+
+  nest-application-starter:
+    container_name: nest-application-starter
+    image: nest-application-starter
+    env_file:
+      - .env
+    ports:
+      - "8000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./uploads:/app/uploads  
+    networks:
+      - postgres  
+
+networks:
+  postgres:
+    driver: bridge

@@ -10,18 +10,10 @@ import { UserRoles } from '../entities/user.entity';
 import { UserRequestData } from '../types';
 
 /**
- * Проверка на удаление пользователя либо самим пользователем, либо root-пользователем
+ * Checking for user deletion, either by the user itself or by the root user
  */
 @Injectable()
 export class OnlyOwnerDeleteGuard implements CanActivate {
-	/**
-	 * Возвращаемое значение указывает,
-	 * разрешено ли выполнение текущего запроса.
-	 * Возврат может быть либо синхронным (`boolean`),
-	 * или асинхронный ("Promise" или "Observable")
-	 * @param context Текущий контекст выполнения
-	 * @returns Разрешить или отказать в выполнении запроса
-	 */
 	canActivate(
 		context: ExecutionContext
 	): boolean | Promise<boolean> | Observable<boolean> {

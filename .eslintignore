@@ -7,3 +7,7 @@
 /uploads
 /uploads/*
 /uploads/**/*
+/pgdata-test
+/pgdata-test/*
+/pgdata-test/**/*
+/uploads

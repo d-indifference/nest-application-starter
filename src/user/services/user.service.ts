@@ -10,14 +10,14 @@ import { UserMapper } from '../mappers/user.mapper';
 import { UserRepository } from '../repositories/user.repository';
 
 /**
- * Сервис для работы с пользователями
+ * User service
  */
 @Injectable()
 export class UserService {
 	/**
-	 * Сервис для работы с пользователями
-	 * @param userRepository Репозиторий сущности "Пользователь"
-	 * @param userMapper Маппер сущности "Пользователь"
+	 * User service
+	 * @param userRepository User repository
+	 * @param userMapper User mapper
 	 */
 	constructor(
 		private readonly userRepository: UserRepository,
@@ -25,8 +25,8 @@ export class UserService {
 	) {}
 
 	/**
-	 * Получение списка всех доступных ролей в системе
-	 * @returns Возможные роли пользователя
+	 * Getting a list of all available roles in the system
+	 * @returns User available roles
 	 */
 	public getRoles(): UserRolesDto {
 		Logger.log('getting roles', this.constructor.name);
@@ -34,9 +34,8 @@ export class UserService {
 	}
 
 	/**
-	 * Поиск всех пользователей
-	 * @param page Номер страницы
-	 * @returns Список экземпляров DTO списка
+	 * Get all users
+	 * @returns User list DTO
 	 */
 	public async findAll(): Promise<UserItemDto[]> {
 		Logger.log('finding all users', this.constructor.name);
@@ -47,9 +46,9 @@ export class UserService {
 	}
 
 	/**
-	 * Поиск пользователя по его ID
-	 * @param id ID пользователя
-	 * @returns Карточка пользователя
+	 * Get user by its ID
+	 * @param id User ID
+	 * @returns User card
 	 */
 	public async findById(id: number): Promise<UserCardDto> {
 		Logger.log(`finding user by id, id: ${id}`, this.constructor.name);
@@ -60,9 +59,9 @@ export class UserService {
 	}
 
 	/**
-	 * Поиск пользователя для его обновления
-	 * @param id ID пользователя
-	 * @returns DTO обновления
+	 * Get user by its ID for update
+	 * @param id User ID
+	 * @returns Update DTO
 	 */
 	public async findForUpdate(id: number): Promise<UserUpdateDto> {
 		Logger.log(
@@ -76,9 +75,9 @@ export class UserService {
 	}
 
 	/**
-	 * Поиск пользователя по email
-	 * @param email Email пользователя
-	 * @returns Найденная сущность
+	 * Get user by its email
+	 * @param email User email
+	 * @returns Found User
 	 */
 	public async findByEmail(email: string): Promise<User> {
 		Logger.log(
@@ -90,10 +89,10 @@ export class UserService {
 	}
 
 	/**
-	 * Создание пользователя
-	 * @param dto DTO создания пользователя
-	 * @param role Роль пользователя
-	 * @returns Созаднный пользователь
+	 * Create a User
+	 * @param dto User create DTO
+	 * @param role User role
+	 * @returns Created user
 	 */
 	public async create(dto: UserCreateDto, role: UserRoles): Promise<User> {
 		Logger.log(
@@ -107,10 +106,10 @@ export class UserService {
 	}
 
 	/**
-	 * Изменение пользователя
-	 * @param id ID пользователя
-	 * @param dto DTO изменения
-	 * @returns ID измененной сущности
+	 * Update a User
+	 * @param id User ID
+	 * @param dto Update DTO
+	 * @returns User update DTO with new information
 	 */
 	public async update(
 		id: number,
@@ -129,8 +128,8 @@ export class UserService {
 	}
 
 	/**
-	 * Удаление пользователей
-	 * @param dto ID сущностей для удаления
+	 * Delete users
+	 * @param dto Users' IDs for deleting
 	 */
 	public async remove(dto: DeleteDto): Promise<void> {
 		Logger.log(

@@ -2,15 +2,15 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserRoles } from '../../entities/user.entity';
 
 /**
- * Информация для отображения карточки пользователя
+ * User card DTO
  */
 export class UserCardDto {
 	/**
-	 * Информация для отображения карточки пользователя
-	 * @param id ID пользователя
+	 * User card DTO
+	 * @param id User ID
 	 * @param email Email
-	 * @param name Имя пользователя
-	 * @param role Роль
+	 * @param name Username
+	 * @param role Role
 	 */
 	constructor(id: number, email: string, name: string, role: UserRoles) {
 		this.id = id;
@@ -20,7 +20,7 @@ export class UserCardDto {
 	}
 
 	/**
-	 * ID пользователя
+	 * User ID
 	 */
 	@ApiProperty({ description: 'User ID', example: 123 })
 	id: number;
@@ -32,13 +32,13 @@ export class UserCardDto {
 	email: string;
 
 	/**
-	 * Имя пользователя
+	 * Username
 	 */
 	@ApiProperty({ description: 'Username', example: 'John Doe' })
 	name: string;
 
 	/**
-	 * Роль
+	 * Role
 	 */
 	@ApiProperty({
 		description: 'User role',

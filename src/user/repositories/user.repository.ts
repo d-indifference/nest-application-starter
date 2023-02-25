@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 
 /**
- * Репозиторий для сущности "Пользователь"
+ * User entity repository
  */
 @Injectable()
 export class UserRepository extends Repository<User> {
@@ -16,15 +16,15 @@ export class UserRepository extends Repository<User> {
 	}
 
 	/**
-	 * Получение всех экземпляров сущности "Пользователь"
-	 * @returns Список пользователей
+	 * Get all users
+	 * @returns User list
 	 */
 	public async findAll(): Promise<User[]> {
 		return await this.createQueryBuilder('user').getMany();
 	}
 
 	/**
-	 * Удаление списка сущностей "Пользователь"
+	 * Delete users by its' IDs
 	 * @param ids ID пользователей для удаления
 	 */
 	public async deleteByIds(ids: number[]): Promise<void> {
@@ -36,9 +36,9 @@ export class UserRepository extends Repository<User> {
 	}
 
 	/**
-	 * Получение сущности "Пользователь" по его email
+	 * Get User by email
 	 * @param email Email
-	 * @returns Сущность "Пользователь"
+	 * @returns User
 	 */
 	public async findByEmail(email: string): Promise<User | undefined> {
 		const entity = await this.createQueryBuilder('user')
@@ -53,9 +53,9 @@ export class UserRepository extends Repository<User> {
 	}
 
 	/**
-	 * Получение сущности "Пользователь" по его ID
-	 * @param id ID записи
-	 * @returns Сущность "Пользователь"
+	 * Get User by ID
+	 * @param id User ID
+	 * @returns User
 	 */
 	public async findById(id: number): Promise<User> {
 		const entity = await this.createQueryBuilder('user')
@@ -66,10 +66,9 @@ export class UserRepository extends Repository<User> {
 	}
 
 	/**
-	 * Получение сущности "Пользователь" по его ID
-	 * или возврат ошибки 404 в случае, если сущность не найдена
-	 * @param id ID записи
-	 * @returns Сущность "Пользователь"
+	 * Get User by ID or throw 404 error
+	 * @param id User ID
+	 * @returns User
 	 */
 	public async findOneOr404(id: number): Promise<User> {
 		const entity = await this.createQueryBuilder('user')

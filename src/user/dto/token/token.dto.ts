@@ -2,11 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsJWT, IsNotEmpty, IsString } from 'class-validator';
 
 /**
- * Токен авторизации
+ * Bearer token DTO
  */
 export class TokenDto {
 	/**
-	 * Значение токена авторизации
+	 * Bearer token
 	 */
 	@ApiProperty({
 		description: 'Bearer-token',

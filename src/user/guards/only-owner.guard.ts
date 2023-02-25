@@ -9,8 +9,7 @@ import { UserRoles } from '../entities/user.entity';
 import { UserRequestData } from '../types';
 
 /**
- * Проверка на осуществление операции с сущностью пользователя
- * либо самим пользователем, либо root-пользователем
+ * Checking for an operation with the user entity either by the user himself or by the root user
  */
 @Injectable()
 export class OnlyOwnerGuard implements CanActivate {

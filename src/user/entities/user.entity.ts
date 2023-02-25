@@ -1,30 +1,30 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 /**
- * Роли пользователя
+ * User roles
  */
 export enum UserRoles {
 	/**
-	 * Пользователь без привилегий суперпользователя
+	 * Common user
 	 */
 	USER = 'USER',
 	/**
-	 * Суперпользователь
+	 * Superuser
 	 */
 	ROOT = 'ROOT'
 }
 
 /**
- * Сущность - пользователь
+ * Entity - user
  */
 @Entity('user', { schema: 'usr' })
 export class User {
 	/**
-	 * Сущность - пользователь
+	 * Entity - user
 	 * @param email Email
-	 * @param password Пароль
-	 * @param name Имя пользователя
-	 * @param role Роль
+	 * @param password Password
+	 * @param name Username
+	 * @param role Role
 	 */
 	constructor(
 		email: string,
@@ -42,7 +42,7 @@ export class User {
 	}
 
 	/**
-	 * ID пользователя
+	 * User ID
 	 */
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -54,19 +54,19 @@ export class User {
 	email: string;
 
 	/**
-	 * Пароль
+	 * Password
 	 */
 	@Column({ type: 'varchar', length: 200 })
 	password: string;
 
 	/**
-	 * Роль
+	 * Role
 	 */
 	@Column({ type: 'varchar', length: 32 })
 	role: UserRoles;
 
 	/**
-	 * Имя пользователя
+	 * Username
 	 */
 	@Column({ type: 'varchar', length: 300 })
 	name: string;

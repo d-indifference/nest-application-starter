@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 config();
 
 /**
- * Опции подключения к базе данных для осуществления миграции
+ * Database connection options for migration
  */
 export const migrationDataSourceOptions: DataSourceOptions = {
 	type: 'postgres',
@@ -21,7 +21,7 @@ export const migrationDataSourceOptions: DataSourceOptions = {
 };
 
 /**
- * Подключение к базе данных для осуществления миграции
+ * Database connection for migration
  */
 const dataSource: DataSource = new DataSource(migrationDataSourceOptions);
 

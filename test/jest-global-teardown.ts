@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 
 /**
- * Исполнение консольной команды запуска миграции тестовой базы данных
+ * Console command execution
  * @returns Promise-объект
  */
 const promisifyProcess = (command: string): Promise<void> =>
@@ -15,9 +15,6 @@ const promisifyProcess = (command: string): Promise<void> =>
 		});
 	});
 
-/**
- * Настройки, производящиеся перед началом процесса тестирования
- */
 const jestGlobalSetup = async () => {
 	await promisifyProcess('npm run migration:revert-test');
 };

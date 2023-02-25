@@ -8,13 +8,14 @@ import { UserRepository } from '../repositories/user.repository';
 import { PasswordService } from '../services/password.service';
 
 /**
- * Маппер сущности "Пользователь"
+ * User entity mapper
  */
 @Injectable()
 export class UserMapper {
 	/**
-	 * Маппер сущности "Пользователь"
-	 * @param passwordService Сервис работы с паролем
+	 * User entity mapper
+	 * @param passwordService Password service
+	 * @param userRepository User repository
 	 */
 	constructor(
 		private passwordService: PasswordService,
@@ -22,18 +23,18 @@ export class UserMapper {
 	) {}
 
 	/**
-	 * Конвертация сущности в DTO списка
-	 * @param entity Сущность
-	 * @returns DTO списка
+	 * Entity to item DTO
+	 * @param entity Entity
+	 * @returns Item DTO
 	 */
 	public toItemDto(entity: User): UserItemDto {
 		return new UserItemDto(entity.id, entity.email, entity.name);
 	}
 
 	/**
-	 * Конвертация сущности в DTO карточки
-	 * @param entity Сущность
-	 * @returns DTO карточки
+	 * Entity to card DTO
+	 * @param entity Entity
+	 * @returns Card DTO
 	 */
 	public toCardDto(entity: User): UserCardDto {
 		return new UserCardDto(
@@ -45,9 +46,9 @@ export class UserMapper {
 	}
 
 	/**
-	 * Конвертация сущности в DTO обновления
-	 * @param entity Сущность
-	 * @returns DTO обновления
+	 * Entity to update DTO
+	 * @param entity Entity
+	 * @returns Update DTO
 	 */
 	public toUpdateDto(entity: User): UserUpdateDto {
 		return new UserUpdateDto(
@@ -58,10 +59,10 @@ export class UserMapper {
 	}
 
 	/**
-	 * Конвертация DTO создания в сущность
-	 * @param dto DTO создания пользователя
-	 * @param role Роль пользователя
-	 * @returns Сущность "пользователь" (пароль зашифрован)
+	 * Creation DTO to entity
+	 * @param dto Create DTO
+	 * @param role User role
+	 * @returns User with encrypted password
 	 */
 	public create(dto: UserCreateDto, role: UserRoles): User {
 		return new User(
@@ -73,10 +74,10 @@ export class UserMapper {
 	}
 
 	/**
-	 * Конвертация DTO обновления в сущность
-	 * @param dto DTO обновления пользователя
-	 * @param id ID пользователя
-	 * @returns Сущность "пользователь" (пароль зашифрован)
+	 * Update DTO to entity
+	 * @param dto Update DTO
+	 * @param id Entity ID
+	 * @returns User with encrypted password
 	 */
 	public async update(dto: UserUpdateDto, id: number): Promise<User> {
 		const entity = await this.userRepository.findById(id);

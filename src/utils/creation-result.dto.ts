@@ -1,19 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 /**
- * DTO результата создания сущности
+ * Entity creation result DTO
  */
 export class CreationResultDto {
 	/**
-	 * DTO результата создания сущности
-	 * @param id ID сущности
+	 * Entity creation result DTO
+	 * @param id Entity ID
 	 */
 	constructor(id: number) {
 		this.id = id;
 	}
 
 	/**
-	 * ID сущности
+	 * Entity ID
 	 */
 	@ApiProperty({ description: 'Enitiy ID', example: 123 })
 	id: number;

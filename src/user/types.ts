@@ -1,6 +1,6 @@
 import { TokenInfoDto } from './dto/token/token-info.dto';
 
 /**
- * Информация о пользователе, извлекаемая из JWT-токена
+ * User information retrieved from the JWT token
  */
 export type UserRequestData = TokenInfoDto & { iat: number; exp: string };

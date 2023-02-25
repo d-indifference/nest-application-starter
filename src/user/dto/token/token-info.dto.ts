@@ -2,14 +2,14 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserRoles } from '../../entities/user.entity';
 
 /**
- * Данные, извлекаемые из токена авторизации
+ * Data retrieved from the authorization token
  */
 export class TokenInfoDto {
 	/**
-	 * Данные, извлекаемые из токена авторизации
-	 * @param id ID пользователя
+	 * Data retrieved from the authorization token
+	 * @param id User ID
 	 * @param email Email
-	 * @param role Роль пользователя
+	 * @param role Role
 	 */
 	constructor(id: number, email: string, role: UserRoles) {
 		this.id = id;
@@ -18,7 +18,7 @@ export class TokenInfoDto {
 	}
 
 	/**
-	 * ID пользователя
+	 * User ID
 	 */
 	@ApiProperty({ description: 'User ID', example: 123 })
 	id: number;
@@ -30,7 +30,7 @@ export class TokenInfoDto {
 	email: string;
 
 	/**
-	 * Роль пользователя
+	 * Role
 	 */
 	@ApiProperty({
 		description: 'User roles',

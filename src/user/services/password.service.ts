@@ -3,20 +3,20 @@ import { ConfigService } from '@nestjs/config';
 import * as CryptoJS from 'crypto-js';
 
 /**
- * Сервис для работы с паролем пользователя
+ * Service for working with user password
  */
 @Injectable()
 export class PasswordService {
 	/**
-	 * Сервис для работы с паролем пользователя
-	 * @param configService Сервис работы с конфигурационными файлами
+	 * Service for working with user password
+	 * @param configService Config service
 	 */
 	constructor(private readonly configService: ConfigService) {}
 
 	/**
-	 * Шифрование пароля
-	 * @param password Пароль
-	 * @returns Зашифрованный пароль
+	 * Password encryption
+	 * @param password Password
+	 * @returns Encrypted password
 	 */
 	public encrypt(password: string): string {
 		return CryptoJS.AES.encrypt(
@@ -26,9 +26,9 @@ export class PasswordService {
 	}
 
 	/**
-	 * Расшифровка пароля
-	 * @param encryptedPassword Зашифрованный пароль
-	 * @returns Расшифрованный пароль
+	 * Password decryption
+	 * @param encryptedPassword Encrypted password
+	 * @returns Decrypted password
 	 */
 	public decrypt(encryptedPassword: string): string {
 		const bytes = CryptoJS.AES.decrypt(

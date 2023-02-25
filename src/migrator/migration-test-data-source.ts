@@ -4,7 +4,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 config({ path: '.env.test' });
 
 /**
- * Опции подключения к тестовой базе данных для осуществления миграции
+ * Test database connection options for migration
  */
 export const migrationTestDataSourceOptions: DataSourceOptions = {
 	type: 'postgres',
@@ -21,7 +21,7 @@ export const migrationTestDataSourceOptions: DataSourceOptions = {
 };
 
 /**
- * Подключение к тестовой базе данных для осуществления миграции
+ * Connecting to a test database for migration
  */
 const testDataSource: DataSource = new DataSource(
 	migrationTestDataSourceOptions

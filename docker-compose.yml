@@ -8,11 +8,8 @@ services:
   postgres:
     container_name: nest_application_starter_db
     image: postgres:13.3
-    environment:
-      POSTGRES_DB: "application_starter"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      PGDATA: "/var/lib/postgresql/data/pgdata"
+    env_file:
+      - .env
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
@@ -24,11 +21,8 @@ services:
   postgres_test:
     container_name: nest_application_starter_db_test
     image: postgres:13.3
-    environment:
-      POSTGRES_DB: "application_starter_test"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      PGDATA: "/var/lib/postgresql/data/pgdata"
+    env_file:
+      - .env.test
     volumes:
       - ./pgdata-test:/var/lib/postgresql/data
     ports:
@@ -40,9 +34,8 @@ services:
   pgadmin:
     container_name: nest_application_starter_pgadmin
     image: dpage/pgadmin4:5.7
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    env_file:
+      - .pgadmin.env
     volumes:
       - ./pgadmin:/var/lib/pgadmin
     ports:
@@ -50,6 +43,20 @@ services:
     restart: unless-stopped
     networks:
       - postgres
+
+  nest-application-starter:
+    container_name: nest-application-starter
+    image: nest-application-starter
+    env_file:
+      - .env
+    ports:
+      - "8000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./uploads:/app/uploads  
+    networks:
+      - postgres  
 
 networks:
   postgres:

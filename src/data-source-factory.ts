@@ -6,6 +6,12 @@ type BuildDataSourceOptions = {
 	logging: boolean;
 };
 
+/**
+ * Data source config builder
+ * @param configService Nest config service
+ * @param options Data source options
+ * @returns Data source config
+ */
 const buildDataSource = (
 	configService: ConfigService,
 	options: BuildDataSourceOptions
@@ -28,9 +34,9 @@ const buildDataSource = (
 };
 
 /**
- * Фабрика конфига подключений рабочей версии приложения
- * @param configService Сервис конфигурации
- * @returns Подготовленные настройки конфига подключений
+ * Data source factory for production database version
+ * @param configService Config service
+ * @returns Prepared settings for production database
  */
 export const dataSourceFactory = (
 	configService: ConfigService
@@ -42,9 +48,9 @@ export const dataSourceFactory = (
 };
 
 /**
- * Фабрика конфига подключений тестовой версии приложения
- * @param configService Сервис конфигурации
- * @returns Подготовленные настройки конфига подключений
+ * Data source factory for test database version
+ * @param configService Config service
+ * @returns Prepared settings for test database
  */
 export const dataSourceTestFactory = (
 	configService: ConfigService

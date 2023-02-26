@@ -40,3 +40,9 @@ lerna-debug.log*
 /pgdata-test
 
 /uploads
+/uploads-*
+/uploads/*
+/uploads-*/*
+
+/.vscode
+/.vscode/*

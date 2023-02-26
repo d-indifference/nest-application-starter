@@ -4,6 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from '../src/user/user.module';
 import { dataSourceTestFactory } from '../src/data-source-factory';
+import { FileModule } from '../src/file/file.module';
 
 /**
  * Build testing app module
@@ -20,7 +21,8 @@ export const testNestApplication = async (): Promise<INestApplication> => {
 				inject: [ConfigService],
 				useFactory: dataSourceTestFactory
 			}),
-			UserModule
+			UserModule,
+			FileModule
 		]
 	}).compile();
 

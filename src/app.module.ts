@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceFactory } from './data-source-factory';
 import { UserModule } from './user/user.module';
+import { FileModule } from './file/file.module';
 
 @Module({
 	imports: [
@@ -14,7 +15,8 @@ import { UserModule } from './user/user.module';
 			inject: [ConfigService],
 			useFactory: dataSourceFactory
 		}),
-		UserModule
+		UserModule,
+		FileModule
 	],
 	controllers: [],
 	providers: []

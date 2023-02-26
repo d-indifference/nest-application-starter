@@ -3,8 +3,8 @@ import { JwtModuleOptions } from '@nestjs/jwt';
 
 /**
  * JWT Module configuration
- * @param configService Сервис конфигурации
- * @returns Опции JWT-модуля
+ * @param configService Configuration service
+ * @returns JWT Module options
  */
 export const jwtConfig = (configService: ConfigService): JwtModuleOptions => {
 	return {

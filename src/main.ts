@@ -12,6 +12,11 @@ let appPort: number;
 const globalPrefix = 'api';
 const docsPrefix = `${globalPrefix}/docs`;
 
+/**
+ * Swagger docs setter
+ * @param app Nest application
+ * @param prefix URL prefix for documentation address
+ */
 const buildSwaggerDocs = (
 	app: NestExpressApplication,
 	prefix: string
@@ -32,6 +37,10 @@ const buildSwaggerDocs = (
 	SwaggerModule.setup(prefix, app, document);
 };
 
+/**
+ * Creating a directory for uploaded files
+ * @param directory Path to file storage directory
+ */
 const createUploadsDir = (directory: string) => {
 	const uploadsDir = path.join(process.cwd(), directory);
 
@@ -40,6 +49,9 @@ const createUploadsDir = (directory: string) => {
 	}
 };
 
+/**
+ * Application start point
+ */
 const boostrap = async () => {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, {
 		cors: true

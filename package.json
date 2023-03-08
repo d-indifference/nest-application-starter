@@ -1,10 +1,10 @@
 {
 	"name": "nest-application-starter",
-	"version": "0.0.1",
-	"description": "",
-	"author": "",
+	"version": "1.0.0",
+	"description": "A big starter for Nest.js application including prepared configuration for PostgreSQL, file uploading module, CRUD controller for working with an entity and configured and prepared for work application testing module",
+	"author": "d_indifference <umaruchan825@gmail.com>",
 	"private": true,
-	"license": "UNLICENSED",
+	"license": "MIT",
 	"scripts": {
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

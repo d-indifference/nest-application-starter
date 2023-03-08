@@ -11,3 +11,5 @@
 /pgdata-test/*
 /pgdata-test/**/*
 /uploads
+README.MD
+LICENSE
